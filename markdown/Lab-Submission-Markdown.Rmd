@@ -1,82 +1,45 @@
 ---
-<<<<<<< HEAD
-title: "Business Intelligence Project"
-author: "Acers_Team"
-date: "October 14, 2023"
-=======
-title: "Business Intelligence Lab Submission Markdown"
-author: "Acers Team"
-date: "11/10/2023"
->>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
-output:
-  github_document: 
-    toc: yes
-    toc_depth: 4
-    fig_width: 6
-    fig_height: 4
-    df_print: default
-editor_options:
-  chunk_output_type: console
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
+------------------------------------------------------------------------
+
+title: "Business Intelligence Lab Submission Markdown" author: "Acers
+Team" date: "11/10/2023"
+
+output: github_document: toc: yes toc_depth: 4 fig_width: 6 fig_height:
+4 df_print: default editor_options: chunk_output_type: console ---
 
 # Student Details
 
-<<<<<<< HEAD
-|                                              |     |
-|----------------------------------------------|-----|
-| **Student ID Number**                        | ... |
-| **Student Name**                             | Nicholas Bwalley |
-| **Student Name**                             | Sarah Mongare |
-| **Student Name**                             | Millicent Cheptoi |
-| **Student Name**                             | Angela Kinya |
-| **Student Name**                             | Lesley Tulienge |
-| **BBIT 4.2 Group**                           | Acers Team |
-| **BI Project Group Name/ID (if applicable)** | ... |
-
-# Setup Chunk
-
-**Note:** the following KnitR options have been set as the global defaults: <BR> `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy = TRUE)`.
-=======
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* |
-|                                                   |                                                                                                      |
-|                                                   | 1.  122790 - C - Bwalley Nicholas                                                                    |
-|                                                   |                                                                                                      |
-|                                                   | 2.  133834 - C - Mongare Sarah                                                                       |
-|                                                   |                                                                                                      |
-|                                                   | 3.  133928 - C - Cheptoi Millicent                                                                   |
-|                                                   |                                                                                                      |
-|                                                   | 4.  134879 - C - Tulienge Lesley                                                                     |
-|                                                   |                                                                                                      |
-|                                                   | 5.  124461 - C - Kinya Angela                                                                        |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **GitHub Classroom Group Name**                   | Acers Team                                                                                           |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Course Code**                                   | BBT4206                                                                                              |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Course Name**                                   | Business Intelligence II                                                                             |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Program**                                       | Bachelor of Business Information Technology                                                          |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                           |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-
-# Setup Chunk
-
-**Note:** the following "*KnitR*" options have been set as the defaults:\
-`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
->>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
-
-More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
-
-```{r setup, include=FALSE}
-library(formatR)
-<<<<<<< HEAD
-knitr::opts_chunk$set(
-  warning = FALSE,
-  collapse = FALSE
-)
-```
++-----------------------+----------------------------------------------+
+| **Student ID Numbers  | *\<list one student name, group, and ID per  |
+| and Names of Group    | line; you should be between 2 and 5 members  |
+| Members**             | per group\>*                                 |
+|                       |                                              |
+|                       | 1.  122790 - C - Bwalley Nicholas            |
+|                       |                                              |
+|                       | 2.  133834 - C - Mongare Sarah               |
+|                       |                                              |
+|                       | 3.  133928 - C - Cheptoi Millicent           |
+|                       |                                              |
+|                       | 4.  134879 - C - Tulienge Lesley             |
+|                       |                                              |
+|                       | 5.  124461 - C - Kinya Angela                |
++-----------------------+----------------------------------------------+
+| **GitHub Classroom    | Acers Team                                   |
+| Group Name**          |                                              |
++-----------------------+----------------------------------------------+
+| **Course Code**       | BBT4206                                      |
++-----------------------+----------------------------------------------+
+| **Course Name**       | Business Intelligence II                     |
++-----------------------+----------------------------------------------+
+| **Program**           | Bachelor of Business Information Technology  |
++-----------------------+----------------------------------------------+
+| **Semester Duration** | 21^st^ August 2023 to 28^th^ November 2023   |
++-----------------------+----------------------------------------------+
 
 # Understanding the Dataset (Exploratory Data Analysis (EDA))
 
@@ -89,10 +52,11 @@ The dataset that was used can be downloaded here: *\<provide a link\>*
 ### Reference:
 
 *\<Cite the dataset here using APA\>\
-Refer to the APA 7th edition manual for rules on how to cite datasets: <https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
-
+Refer to the APA 7th edition manual for rules on how to cite datasets:
+<https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
 
 ## STEP 1. Install and Load the Required Packages ----
+
 ```{r code chunk one}
 if (require("languageserver")) {
   require("languageserver")
@@ -102,12 +66,12 @@ if (require("languageserver")) {
 }
 
 
-=======
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
                       collapse = FALSE, tidy = TRUE, include=TRUE)
 ```
 
-**Note:** the following "*R Markdown*" options have been set as the defaults:
+**Note:** the following "*R Markdown*" options have been set as the
+defaults:
 
 > output:\
 > \
@@ -126,7 +90,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
 We installed all the packages that will enable us execute this lab:
 
 ```{r chuck code one}
->>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
+
 ## mlbench ----
 if (require("mlbench")) {
   require("mlbench")
@@ -174,11 +138,10 @@ if (require("FactoMineR")) {
   install.packages("FactoMineR", dependencies = TRUE,
                    repos = "https://cloud.r-project.org")
 }
-<<<<<<< HEAD
 ```
 
-
 ## STEP 2: Loading datasets
+
 ```{r Dataset Loader}
 library(readr)
 
@@ -190,8 +153,8 @@ View(StudentPerformanceDataset)
 
 ```
 
-
 ## STEP 3. Apply a Scale Data Transform ----
+
 ```{r code chunk three}
 summary(StudentPerformanceDataset)
 # The code below converts column number 4 into unlisted and numeric data first
@@ -209,8 +172,8 @@ student_datasetset_yield <- as.numeric(unlist(student_dataset_scale_transform[, 
 hist(student_datasetset_yield, main = names(student_dataset_scale_transform)[4])
 ```
 
-
 ## STEP 4. Apply a Centre Data Transform ----
+
 ```{r code chunk four}
 ### The Centre Basic Transform on the StudentDataset ----
 summary(StudentPerformanceDataset)
@@ -219,7 +182,7 @@ print(model_of_the_transform)
 student_dataset_center_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
 summary(student_dataset_center_transform)
 
-### The Standardize Basic Transform on the Crop Dataset ----
+### The Standardize Basic Transform on the Student Dataset ----
 # BEFORE
 summary(StudentPerformanceDataset)
 sapply(StudentPerformanceDataset[, 4], sd)
@@ -233,8 +196,8 @@ summary(student_dataset_standardize_transform)
 sapply(student_dataset_standardize_transform[, 4], sd)
 ```
 
-
 ## STEP 5. Apply a Standardize Data Transform ----
+
 ```{r code chunk five}
 ### The Standardize Basic Transform on the StudentDataset ----
 # BEFORE
@@ -250,8 +213,8 @@ summary(student_dataset_standardize_transform)
 sapply(student_dataset_standardize_transform[, 4], sd)
 ```
 
-
 ## STEP 6. Apply a Normalize Data Transform ----
+
 ```{code chunk six}
 ### The Normalize Transform on the StudentDataset ----
 summary(StudentPerformanceDataset)
@@ -261,8 +224,8 @@ student_dataset_normalize_transform <- predict(model_of_the_transform, StudentPe
 summary(student_dataset_normalize_transform)
 ```
 
-
 ## STEP 7. Apply a Box-Cox Power Transform ----
+
 ```{r code chunk seven}
 ### Box-Cox Power Transform on the StudentDataset ----
 # BEFORE
@@ -289,8 +252,8 @@ sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
 sapply(student_dataset_box_cox_transform[, 4], sd)
 ```
 
-
 ## STEP 8. Apply a Yeo-Johnson Power Transform ----
+
 ```{r code chunk eight}
 ### Yeo-Johnson Power Transform on the StudentDataset ----
 # BEFORE
@@ -314,10 +277,43 @@ sapply(student_dataset_yeo_johnson_transform[, 4],  skewness, type = 2)
 sapply(student_dataset_yeo_johnson_transform[, 4], sd)
 ```
 
-
 ## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction ----
 
+### PCA for Dimensionality Reduction on the Student Dataset ----
 
-=======
+Notice that PCA is not applied to the "Student Data" dataset because it
+requires multiple numeric independent variables. The dataset has 3
+categorical independent variables and only 1 numeric independent
+variable.
+
+##STEP 10. ICA Linear Algebra Transform for Dimensionality Reduction
+----
+
+```{r code chunk ten}
+# Independent Component Analysis (ICA) Linear Algebra Transform ----
+
+# Independent Component Analysis (ICA) transforms the data to return only the
+# independent components. The n.comp argument is required to specify the
+# desired number of independent components. This also results in a list of
+# attributes that are uncorrelated.
+
+if (!is.element("fastICA", installed.packages()[, 1])) {
+  install.packages("fastICA", dependencies = TRUE)
+}
+require("fastICA")
+
+### ICA for Dimensionality Reduction on the Student Dataset ----
+# Notice that ICA is not applied to the “Student Data” dataset because it requires
+# multiple numeric independent variables. The dataset has 3 categorical
+# independent variables and only 1 numeric independent variable.
+
+### ICA for Dimensionality Reduction on the Iris Dataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center", "ica"),
+                                     n.comp = 3)
+print(model_of_the_transform)
+StudentPerformanceDataset_ica_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+summary(StudentPerformanceDataset_ica_dr)
 ```
->>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21

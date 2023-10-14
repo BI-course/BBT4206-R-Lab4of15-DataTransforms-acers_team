@@ -1,10 +1,5 @@
-Business Intelligence Project
-================
-Acers_Team
-October 14, 2023
 
 - [Student Details](#student-details)
-- [Setup Chunk](#setup-chunk)
 - [Understanding the Dataset (Exploratory Data Analysis
   (EDA))](#understanding-the-dataset-exploratory-data-analysis-eda)
   - [Loading the Dataset](#loading-the-dataset)
@@ -12,6 +7,8 @@ October 14, 2023
     - [Reference:](#reference)
   - [STEP 1. Install and Load the Required Packages
     —-](#step-1-install-and-load-the-required-packages--)
+- [STEP 1 : Install and load all the
+  packages](#step-1--install-and-load-all-the-packages)
   - [STEP 2: Loading datasets](#step-2-loading-datasets)
   - [STEP 3. Apply a Scale Data Transform
     —-](#step-3-apply-a-scale-data-transform--)
@@ -27,29 +24,59 @@ October 14, 2023
     —-](#step-8-apply-a-yeo-johnson-power-transform--)
   - [STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction
     —-](#step-9a-pca-linear-algebra-transform-for-dimensionality-reduction--)
+    - [PCA for Dimensionality Reduction on the Student Dataset
+      —-](#pca-for-dimensionality-reduction-on-the-student-dataset--)
+
+------------------------------------------------------------------------
+
+title: “Business Intelligence Lab Submission Markdown” author: “Acers
+Team” date: “11/10/2023”
+
+output: github_document: toc: yes toc_depth: 4 fig_width: 6 fig_height:
+4 df_print: default editor_options: chunk_output_type: console —
 
 # Student Details
 
-|                                              |                   |
-|----------------------------------------------|-------------------|
-| **Student ID Number**                        | …                 |
-| **Student Name**                             | Nicholas Bwalley  |
-| **Student Name**                             | Sarah Mongare     |
-| **Student Name**                             | Millicent Cheptoi |
-| **Student Name**                             | Angela Kinya      |
-| **Student Name**                             | Lesley Tulienge   |
-| **BBIT 4.2 Group**                           | Acers Team        |
-| **BI Project Group Name/ID (if applicable)** | …                 |
-
-# Setup Chunk
-
-**Note:** the following KnitR options have been set as the global
-defaults: <BR>
-`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy = TRUE)`.
-
-More KnitR options are documented here
-<https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and
-here <https://yihui.org/knitr/options/>.
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Student ID Numbers and Names of Group Members</strong></td>
+<td><p><em>&lt;list one student name, group, and ID per line; you should
+be between 2 and 5 members per group&gt;</em></p>
+<ol type="1">
+<li><p>122790 - C - Bwalley Nicholas</p></li>
+<li><p>133834 - C - Mongare Sarah</p></li>
+<li><p>133928 - C - Cheptoi Millicent</p></li>
+<li><p>134879 - C - Tulienge Lesley</p></li>
+<li><p>124461 - C - Kinya Angela</p></li>
+</ol></td>
+</tr>
+<tr class="even">
+<td><strong>GitHub Classroom Group Name</strong></td>
+<td>Acers Team</td>
+</tr>
+<tr class="odd">
+<td><strong>Course Code</strong></td>
+<td>BBT4206</td>
+</tr>
+<tr class="even">
+<td><strong>Course Name</strong></td>
+<td>Business Intelligence II</td>
+</tr>
+<tr class="odd">
+<td><strong>Program</strong></td>
+<td>Bachelor of Business Information Technology</td>
+</tr>
+<tr class="even">
+<td><strong>Semester Duration</strong></td>
+<td>21<sup>st</sup> August 2023 to 28<sup>th</sup> November 2023</td>
+</tr>
+</tbody>
+</table>
 
 # Understanding the Dataset (Exploratory Data Analysis (EDA))
 
@@ -79,12 +106,35 @@ if (require("languageserver")) {
     ## Loading required package: languageserver
 
 ``` r
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
+                      collapse = FALSE, tidy = TRUE, include=TRUE)
+```
+
+**Note:** the following “*R Markdown*” options have been set as the
+defaults:
+
+> output:  
+>   
+> github_document:  
+> toc: yes  
+> toc_depth: 4  
+> fig_width: 6  
+> fig_height: 4  
+> df_print: default  
+>   
+> editor_options:  
+> chunk_output_type: console
+
+# STEP 1 : Install and load all the packages
+
+We installed all the packages that will enable us execute this lab:
+
+``` r
 ## mlbench ----
 if (require("mlbench")) {
-  require("mlbench")
+    require("mlbench")
 } else {
-  install.packages("mlbench", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("mlbench", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -93,10 +143,9 @@ if (require("mlbench")) {
 ``` r
 ## readr ----
 if (require("readr")) {
-  require("readr")
+    require("readr")
 } else {
-  install.packages("readr", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("readr", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -105,10 +154,9 @@ if (require("readr")) {
 ``` r
 ## caret ----
 if (require("caret")) {
-  require("caret")
+    require("caret")
 } else {
-  install.packages("caret", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("caret", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -121,10 +169,9 @@ if (require("caret")) {
 ``` r
 ## e1071 ----
 if (require("e1071")) {
-  require("e1071")
+    require("e1071")
 } else {
-  install.packages("e1071", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("e1071", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -133,10 +180,9 @@ if (require("e1071")) {
 ``` r
 ## factoextra ----
 if (require("factoextra")) {
-  require("factoextra")
+    require("factoextra")
 } else {
-  install.packages("factoextra", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("factoextra", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -147,10 +193,9 @@ if (require("factoextra")) {
 ``` r
 ## FactoMineR ----
 if (require("FactoMineR")) {
-  require("FactoMineR")
+    require("FactoMineR")
 } else {
-  install.packages("FactoMineR", dependencies = TRUE,
-                   repos = "https://cloud.r-project.org")
+    install.packages("FactoMineR", dependencies = TRUE, repos = "https://cloud.r-project.org")
 }
 ```
 
@@ -620,7 +665,8 @@ summary(StudentPerformanceDataset)
 ``` r
 # The code below converts column number 4 into unlisted and numeric data first
 # so that a histogram can be plotted. Further reading:
-StudentPerformanceDataset_yield <- as.numeric(unlist(StudentPerformanceDataset[, 4]))
+StudentPerformanceDataset_yield <- as.numeric(unlist(StudentPerformanceDataset[,
+    4]))
 hist(StudentPerformanceDataset_yield, main = names(StudentPerformanceDataset)[4])
 ```
 
@@ -1974,8 +2020,7 @@ summary(student_dataset_center_transform)
     ## 
 
 ``` r
-### The Standardize Basic Transform on the Crop Dataset ----
-# BEFORE
+### The Standardize Basic Transform on the Student Dataset ---- BEFORE
 summary(StudentPerformanceDataset)
 ```
 
@@ -2420,8 +2465,8 @@ sapply(StudentPerformanceDataset[, 4], sd)
     ##          0.1400141
 
 ``` r
-model_of_the_transform <- preProcess(StudentPerformanceDataset,
-                                     method = c("scale", "center"))
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("scale",
+    "center"))
 print(model_of_the_transform)
 ```
 
@@ -2433,7 +2478,7 @@ print(model_of_the_transform)
     ##   - scaled (96)
 
 ``` r
-student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset)  # nolint
 
 # AFTER
 summary(student_dataset_standardize_transform)
@@ -2882,8 +2927,7 @@ sapply(student_dataset_standardize_transform[, 4], sd)
 ## STEP 5. Apply a Standardize Data Transform —-
 
 ``` r
-### The Standardize Basic Transform on the StudentDataset ----
-# BEFORE
+### The Standardize Basic Transform on the StudentDataset ---- BEFORE
 summary(StudentPerformanceDataset)
 ```
 
@@ -3328,8 +3372,8 @@ sapply(StudentPerformanceDataset[, 4], sd)
     ##          0.1400141
 
 ``` r
-model_of_the_transform <- preProcess(StudentPerformanceDataset,
-                                     method = c("scale", "center"))
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("scale",
+    "center"))
 print(model_of_the_transform)
 ```
 
@@ -3341,7 +3385,7 @@ print(model_of_the_transform)
     ##   - scaled (96)
 
 ``` r
-student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset)  # nolint
 
 # AFTER
 summary(student_dataset_standardize_transform)
@@ -3801,8 +3845,7 @@ summary(student_dataset_normalize_transform)
 ## STEP 7. Apply a Box-Cox Power Transform —-
 
 ``` r
-### Box-Cox Power Transform on the StudentDataset ----
-# BEFORE
+### Box-Cox Power Transform on the StudentDataset ---- BEFORE
 summary(student_dataset_standardize_transform)
 ```
 
@@ -4241,7 +4284,7 @@ summary(student_dataset_standardize_transform)
 
 ``` r
 # Calculate the skewness before the Box-Cox transform
-sapply(student_dataset_standardize_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_standardize_transform[, 4], skewness, type = 2)
 ```
 
     ## regret_choosing_bi 
@@ -4255,8 +4298,7 @@ sapply(student_dataset_standardize_transform[, 4], sd)
     ##                  1
 
 ``` r
-model_of_the_transform <- preProcess(student_dataset_standardize_transform,
-                                     method = c("BoxCox"))
+model_of_the_transform <- preProcess(student_dataset_standardize_transform, method = c("BoxCox"))
 print(model_of_the_transform)
 ```
 
@@ -4266,8 +4308,7 @@ print(model_of_the_transform)
     ##   - ignored (4)
 
 ``` r
-student_dataset_box_cox_transform <- predict(model_of_the_transform,
-                                             student_dataset_standardize_transform)
+student_dataset_box_cox_transform <- predict(model_of_the_transform, student_dataset_standardize_transform)
 
 # AFTER
 summary(student_dataset_box_cox_transform)
@@ -4707,7 +4748,7 @@ summary(student_dataset_box_cox_transform)
     ## 
 
 ``` r
-sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], skewness, type = 2)
 ```
 
     ## regret_choosing_bi 
@@ -4722,7 +4763,7 @@ sapply(student_dataset_box_cox_transform[, 4], sd)
 
 ``` r
 # Calculate the skewness after the Box-Cox transform
-sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], skewness, type = 2)
 ```
 
     ## regret_choosing_bi 
@@ -5664,3 +5705,526 @@ sapply(student_dataset_yeo_johnson_transform[, 4], sd)
     ##                  1
 
 ## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction —-
+
+### PCA for Dimensionality Reduction on the Student Dataset —-
+
+Notice that PCA is not applied to the “Student Data” dataset because it
+requires multiple numeric independent variables. The dataset has 3
+categorical independent variables and only 1 numeric independent
+variable.
+
+\##STEP 10. ICA Linear Algebra Transform for Dimensionality Reduction —-
+
+``` r
+# Independent Component Analysis (ICA) Linear Algebra Transform ----
+
+# Independent Component Analysis (ICA) transforms the data to return only the
+# independent components. The n.comp argument is required to specify the
+# desired number of independent components. This also results in a list of
+# attributes that are uncorrelated.
+
+if (!is.element("fastICA", installed.packages()[, 1])) {
+    install.packages("fastICA", dependencies = TRUE)
+}
+require("fastICA")
+```
+
+    ## Loading required package: fastICA
+
+``` r
+### ICA for Dimensionality Reduction on the Student Dataset ---- Notice that
+### ICA is not applied to the “Student Data” dataset because it requires
+### multiple numeric independent variables. The dataset has 3 categorical
+### independent variables and only 1 numeric independent variable.
+
+### ICA for Dimensionality Reduction on the Iris Dataset ----
+summary(StudentPerformanceDataset)
+```
+
+    ##  class_group            gender            YOB       regret_choosing_bi
+    ##  Length:101         Min.   :0.0000   Min.   :1998   Min.   :0.0000    
+    ##  Class :character   1st Qu.:0.0000   1st Qu.:2000   1st Qu.:0.0000    
+    ##  Mode  :character   Median :1.0000   Median :2001   Median :0.0000    
+    ##                     Mean   :0.5743   Mean   :2001   Mean   :0.0198    
+    ##                     3rd Qu.:1.0000   3rd Qu.:2002   3rd Qu.:0.0000    
+    ##                     Max.   :1.0000   Max.   :2003   Max.   :1.0000    
+    ##                                                                       
+    ##   drop_bi_now       motivator      read_content_before_lecture
+    ##  Min.   :0.0000   Min.   :0.0000   Min.   :1.000              
+    ##  1st Qu.:0.0000   1st Qu.:1.0000   1st Qu.:2.000              
+    ##  Median :0.0000   Median :1.0000   Median :3.000              
+    ##  Mean   :0.0198   Mean   :0.7525   Mean   :2.752              
+    ##  3rd Qu.:0.0000   3rd Qu.:1.0000   3rd Qu.:3.000              
+    ##  Max.   :1.0000   Max.   :1.0000   Max.   :5.000              
+    ##                                                               
+    ##  anticipate_test_questions answer_rhetorical_questions find_terms_I_do_not_know
+    ##  Min.   :1.000             Min.   :1.000               Min.   :1.000           
+    ##  1st Qu.:3.000             1st Qu.:3.000               1st Qu.:3.000           
+    ##  Median :4.000             Median :4.000               Median :4.000           
+    ##  Mean   :3.584             Mean   :3.426               Mean   :3.743           
+    ##  3rd Qu.:4.000             3rd Qu.:4.000               3rd Qu.:5.000           
+    ##  Max.   :5.000             Max.   :5.000               Max.   :5.000           
+    ##                                                                                
+    ##  copy_new_terms_in_reading_notebook take_quizzes_and_use_results
+    ##  Min.   :1.000                      Min.   :1.000               
+    ##  1st Qu.:3.000                      1st Qu.:3.000               
+    ##  Median :4.000                      Median :4.000               
+    ##  Mean   :3.663                      Mean   :3.941               
+    ##  3rd Qu.:4.000                      3rd Qu.:5.000               
+    ##  Max.   :5.000                      Max.   :5.000               
+    ##                                                                 
+    ##  reorganise_course_outline write_down_important_points space_out_revision
+    ##  Min.   :1.000             Min.   :1.000               Min.   :1.000     
+    ##  1st Qu.:3.000             1st Qu.:3.000               1st Qu.:3.000     
+    ##  Median :3.000             Median :4.000               Median :3.000     
+    ##  Mean   :3.376             Mean   :3.832               Mean   :3.228     
+    ##  3rd Qu.:4.000             3rd Qu.:5.000               3rd Qu.:4.000     
+    ##  Max.   :5.000             Max.   :5.000               Max.   :5.000     
+    ##                                                                          
+    ##  studying_in_study_group schedule_appointments goal_oriented  
+    ##  Min.   :1.000           Min.   :1.000         Min.   :0.000  
+    ##  1st Qu.:1.000           1st Qu.:1.000         1st Qu.:0.000  
+    ##  Median :2.000           Median :2.000         Median :0.000  
+    ##  Mean   :2.455           Mean   :1.931         Mean   :0.198  
+    ##  3rd Qu.:3.000           3rd Qu.:2.000         3rd Qu.:0.000  
+    ##  Max.   :5.000           Max.   :5.000         Max.   :1.000  
+    ##                                                               
+    ##  spaced_repetition testing_and_active_recall  interleaving    categorizing  
+    ##  Min.   :1.000     Min.   :1.000             Min.   :1.000   Min.   :1.000  
+    ##  1st Qu.:2.000     1st Qu.:3.000             1st Qu.:2.000   1st Qu.:2.000  
+    ##  Median :3.000     Median :3.000             Median :2.000   Median :3.000  
+    ##  Mean   :2.554     Mean   :3.059             Mean   :2.257   Mean   :2.713  
+    ##  3rd Qu.:3.000     3rd Qu.:4.000             3rd Qu.:3.000   3rd Qu.:3.000  
+    ##  Max.   :4.000     Max.   :4.000             Max.   :4.000   Max.   :4.000  
+    ##                                                                             
+    ##  retrospective_timetable cornell_notes        sq3r          commute    
+    ##  Min.   :1.000           Min.   :1.000   Min.   :1.000   Min.   :1.00  
+    ##  1st Qu.:2.000           1st Qu.:2.000   1st Qu.:2.000   1st Qu.:2.00  
+    ##  Median :2.000           Median :3.000   Median :3.000   Median :3.00  
+    ##  Mean   :2.406           Mean   :2.545   Mean   :2.614   Mean   :2.73  
+    ##  3rd Qu.:3.000           3rd Qu.:3.000   3rd Qu.:3.000   3rd Qu.:4.00  
+    ##  Max.   :4.000           Max.   :4.000   Max.   :4.000   Max.   :4.00  
+    ##                                                          NA's   :1     
+    ##    study_time   repeats_since_Y1  paid_tuition   free_tuition  extra_curricular
+    ##  Min.   :1.00   Min.   : 0.00    Min.   :0.00   Min.   :0.00   Min.   :0.00    
+    ##  1st Qu.:1.00   1st Qu.: 0.00    1st Qu.:0.00   1st Qu.:0.00   1st Qu.:0.00    
+    ##  Median :2.00   Median : 2.00    Median :0.00   Median :0.00   Median :1.00    
+    ##  Mean   :1.75   Mean   : 2.05    Mean   :0.11   Mean   :0.27   Mean   :0.53    
+    ##  3rd Qu.:2.00   3rd Qu.: 3.00    3rd Qu.:0.00   3rd Qu.:1.00   3rd Qu.:1.00    
+    ##  Max.   :4.00   Max.   :10.00    Max.   :1.00   Max.   :1.00   Max.   :1.00    
+    ##  NA's   :1      NA's   :1        NA's   :1      NA's   :1      NA's   :1       
+    ##  sports_extra_curricular exercise_per_week    meditate         pray     
+    ##  Min.   :0.00            Min.   :0.0       Min.   :0.00   Min.   :0.00  
+    ##  1st Qu.:0.00            1st Qu.:1.0       1st Qu.:0.00   1st Qu.:1.00  
+    ##  Median :0.00            Median :1.0       Median :1.00   Median :2.00  
+    ##  Mean   :0.36            Mean   :1.1       Mean   :0.76   Mean   :2.09  
+    ##  3rd Qu.:1.00            3rd Qu.:2.0       3rd Qu.:1.00   3rd Qu.:3.00  
+    ##  Max.   :1.00            Max.   :3.0       Max.   :3.00   Max.   :3.00  
+    ##  NA's   :1               NA's   :1         NA's   :1      NA's   :1     
+    ##     internet        laptop  family_relationships  friendships  
+    ##  Min.   :0.00   Min.   :1   Min.   :2.00         Min.   :2.00  
+    ##  1st Qu.:1.00   1st Qu.:1   1st Qu.:4.00         1st Qu.:4.00  
+    ##  Median :1.00   Median :1   Median :4.00         Median :4.00  
+    ##  Mean   :0.87   Mean   :1   Mean   :4.19         Mean   :4.01  
+    ##  3rd Qu.:1.00   3rd Qu.:1   3rd Qu.:5.00         3rd Qu.:4.00  
+    ##  Max.   :1.00   Max.   :1   Max.   :5.00         Max.   :5.00  
+    ##  NA's   :1      NA's   :1   NA's   :1            NA's   :1     
+    ##  romantic_relationships spiritual_wellnes financial_wellness     health    
+    ##  Min.   :0.00           Min.   :1.00      Min.   :1.00       Min.   :1.00  
+    ##  1st Qu.:0.00           1st Qu.:3.00      1st Qu.:2.00       1st Qu.:3.00  
+    ##  Median :0.00           Median :4.00      Median :3.00       Median :4.00  
+    ##  Mean   :1.37           Mean   :3.65      Mean   :3.03       Mean   :4.04  
+    ##  3rd Qu.:3.00           3rd Qu.:4.00      3rd Qu.:4.00       3rd Qu.:5.00  
+    ##  Max.   :4.00           Max.   :5.00      Max.   :5.00       Max.   :5.00  
+    ##  NA's   :1              NA's   :1         NA's   :1          NA's   :1     
+    ##     day_out      night_out    alcohol_or_narcotics     mentor    
+    ##  Min.   :0.0   Min.   :0.00   Min.   :0.00         Min.   :0.00  
+    ##  1st Qu.:0.0   1st Qu.:0.00   1st Qu.:0.00         1st Qu.:0.00  
+    ##  Median :1.0   Median :0.00   Median :0.00         Median :0.00  
+    ##  Mean   :0.8   Mean   :0.51   Mean   :0.35         Mean   :0.41  
+    ##  3rd Qu.:1.0   3rd Qu.:1.00   3rd Qu.:1.00         3rd Qu.:1.00  
+    ##  Max.   :3.0   Max.   :3.00   Max.   :3.00         Max.   :1.00  
+    ##  NA's   :1     NA's   :1      NA's   :1            NA's   :1     
+    ##  mentor_meetings A - 1. I am enjoying the subject
+    ##  Min.   :0.00    Min.   :3.00                    
+    ##  1st Qu.:0.00    1st Qu.:4.00                    
+    ##  Median :0.00    Median :5.00                    
+    ##  Mean   :0.68    Mean   :4.49                    
+    ##  3rd Qu.:1.00    3rd Qu.:5.00                    
+    ##  Max.   :3.00    Max.   :5.00                    
+    ##  NA's   :1       NA's   :1                       
+    ##  A - 2. Classes start and end on time
+    ##  Min.   :3.00                        
+    ##  1st Qu.:4.00                        
+    ##  Median :5.00                        
+    ##  Mean   :4.68                        
+    ##  3rd Qu.:5.00                        
+    ##  Max.   :5.00                        
+    ##  NA's   :1                           
+    ##  A - 3. The learning environment is participative, involves learning by doing and is group-based
+    ##  Min.   :3.00                                                                                   
+    ##  1st Qu.:4.00                                                                                   
+    ##  Median :4.00                                                                                   
+    ##  Mean   :4.35                                                                                   
+    ##  3rd Qu.:5.00                                                                                   
+    ##  Max.   :5.00                                                                                   
+    ##  NA's   :1                                                                                      
+    ##  A - 4. The subject content is delivered according to the course outline and meets my expectations
+    ##  Min.   :3.00                                                                                     
+    ##  1st Qu.:4.75                                                                                     
+    ##  Median :5.00                                                                                     
+    ##  Mean   :4.74                                                                                     
+    ##  3rd Qu.:5.00                                                                                     
+    ##  Max.   :5.00                                                                                     
+    ##  NA's   :1                                                                                        
+    ##  A - 5. The topics are clear and logically developed
+    ##  Min.   :2.00                                       
+    ##  1st Qu.:4.00                                       
+    ##  Median :5.00                                       
+    ##  Mean   :4.65                                       
+    ##  3rd Qu.:5.00                                       
+    ##  Max.   :5.00                                       
+    ##  NA's   :1                                          
+    ##  A - 6. I am developing my oral and writing skills
+    ##  Min.   :1.00                                     
+    ##  1st Qu.:4.00                                     
+    ##  Median :4.00                                     
+    ##  Mean   :4.11                                     
+    ##  3rd Qu.:5.00                                     
+    ##  Max.   :5.00                                     
+    ##  NA's   :1                                        
+    ##  A - 7. I am developing my reflective and critical reasoning skills
+    ##  Min.   :2.00                                                      
+    ##  1st Qu.:4.00                                                      
+    ##  Median :4.00                                                      
+    ##  Mean   :4.38                                                      
+    ##  3rd Qu.:5.00                                                      
+    ##  Max.   :5.00                                                      
+    ##  NA's   :1                                                         
+    ##  A - 8. The assessment methods are assisting me to learn
+    ##  Min.   :1.00                                           
+    ##  1st Qu.:4.00                                           
+    ##  Median :5.00                                           
+    ##  Mean   :4.61                                           
+    ##  3rd Qu.:5.00                                           
+    ##  Max.   :5.00                                           
+    ##  NA's   :1                                              
+    ##  A - 9. I receive relevant feedback
+    ##  Min.   :3.00                      
+    ##  1st Qu.:4.00                      
+    ##  Median :5.00                      
+    ##  Mean   :4.58                      
+    ##  3rd Qu.:5.00                      
+    ##  Max.   :5.00                      
+    ##  NA's   :1                         
+    ##  A - 10. I read the recommended readings and notes
+    ##  Min.   :3.00                                     
+    ##  1st Qu.:4.00                                     
+    ##  Median :5.00                                     
+    ##  Mean   :4.55                                     
+    ##  3rd Qu.:5.00                                     
+    ##  Max.   :5.00                                     
+    ##  NA's   :1                                        
+    ##  A - 11. I use the eLearning material posted
+    ##  Min.   :3.0                                
+    ##  1st Qu.:4.0                                
+    ##  Median :5.0                                
+    ##  Mean   :4.7                                
+    ##  3rd Qu.:5.0                                
+    ##  Max.   :5.0                                
+    ##  NA's   :1                                  
+    ##  B - 1. Concept 1 of 6: Principles of Business Intelligence and the DataOps Philosophy
+    ##  Min.   :1.00                                                                         
+    ##  1st Qu.:4.00                                                                         
+    ##  Median :4.00                                                                         
+    ##  Mean   :4.25                                                                         
+    ##  3rd Qu.:5.00                                                                         
+    ##  Max.   :5.00                                                                         
+    ##  NA's   :1                                                                            
+    ##  B - 2. Concept 3 of 6: Linear Algorithms for Predictive Analytics
+    ##  Min.   :2.00                                                     
+    ##  1st Qu.:3.00                                                     
+    ##  Median :4.00                                                     
+    ##  Mean   :3.94                                                     
+    ##  3rd Qu.:5.00                                                     
+    ##  Max.   :5.00                                                     
+    ##  NA's   :1                                                        
+    ##  C - 2. Quizzes at the end of each concept
+    ##  Min.   :2.00                             
+    ##  1st Qu.:4.00                             
+    ##  Median :5.00                             
+    ##  Mean   :4.59                             
+    ##  3rd Qu.:5.00                             
+    ##  Max.   :5.00                             
+    ##  NA's   :1                                
+    ##  C - 3. Lab manuals that outline the steps to follow during the labs
+    ##  Min.   :3.00                                                       
+    ##  1st Qu.:4.00                                                       
+    ##  Median :5.00                                                       
+    ##  Mean   :4.61                                                       
+    ##  3rd Qu.:5.00                                                       
+    ##  Max.   :5.00                                                       
+    ##  NA's   :1                                                          
+    ##  C - 4. Required lab work submissions at the end of each lab manual that outline the activity to be done on your own
+    ##  Min.   :3.00                                                                                                       
+    ##  1st Qu.:4.00                                                                                                       
+    ##  Median :5.00                                                                                                       
+    ##  Mean   :4.55                                                                                                       
+    ##  3rd Qu.:5.00                                                                                                       
+    ##  Max.   :5.00                                                                                                       
+    ##  NA's   :1                                                                                                          
+    ##  C - 5. Supplementary videos to watch
+    ##  Min.   :1.00                        
+    ##  1st Qu.:4.00                        
+    ##  Median :4.00                        
+    ##  Mean   :4.19                        
+    ##  3rd Qu.:5.00                        
+    ##  Max.   :5.00                        
+    ##  NA's   :1                           
+    ##  C - 6. Supplementary podcasts to listen to
+    ##  Min.   :1.00                              
+    ##  1st Qu.:4.00                              
+    ##  Median :4.00                              
+    ##  Mean   :4.08                              
+    ##  3rd Qu.:5.00                              
+    ##  Max.   :5.00                              
+    ##  NA's   :1                                 
+    ##  C - 7. Supplementary content to read C - 8. Lectures slides
+    ##  Min.   :1.00                         Min.   :2.0           
+    ##  1st Qu.:4.00                         1st Qu.:4.0           
+    ##  Median :4.00                         Median :5.0           
+    ##  Mean   :4.17                         Mean   :4.6           
+    ##  3rd Qu.:5.00                         3rd Qu.:5.0           
+    ##  Max.   :5.00                         Max.   :5.0           
+    ##  NA's   :1                            NA's   :1             
+    ##  C - 9. Lecture notes on some of the lecture slides
+    ##  Min.   :2.0                                       
+    ##  1st Qu.:4.0                                       
+    ##  Median :5.0                                       
+    ##  Mean   :4.6                                       
+    ##  3rd Qu.:5.0                                       
+    ##  Max.   :5.0                                       
+    ##  NA's   :1                                         
+    ##  C - 10. The quality of the lectures given (quality measured by the breadth (the full span of knowledge of a subject) and depth (the extent to which specific topics are focused upon, amplified, and explored) of learning - NOT quality measured by how fun/comical/lively the lectures are)
+    ##  Min.   :2.00                                                                                                                                                                                                                                                                                 
+    ##  1st Qu.:4.00                                                                                                                                                                                                                                                                                 
+    ##  Median :5.00                                                                                                                                                                                                                                                                                 
+    ##  Mean   :4.54                                                                                                                                                                                                                                                                                 
+    ##  3rd Qu.:5.00                                                                                                                                                                                                                                                                                 
+    ##  Max.   :5.00                                                                                                                                                                                                                                                                                 
+    ##  NA's   :1                                                                                                                                                                                                                                                                                    
+    ##  C - 11. The division of theory and practice such that most of the theory is done during the recorded online classes and most of the practice is done during the physical classes
+    ##  Min.   :2.00                                                                                                                                                                    
+    ##  1st Qu.:4.00                                                                                                                                                                    
+    ##  Median :5.00                                                                                                                                                                    
+    ##  Mean   :4.49                                                                                                                                                                    
+    ##  3rd Qu.:5.00                                                                                                                                                                    
+    ##  Max.   :5.00                                                                                                                                                                    
+    ##  NA's   :1                                                                                                                                                                       
+    ##  C - 12. The recordings of online classes
+    ##  Min.   :2.00                            
+    ##  1st Qu.:4.00                            
+    ##  Median :5.00                            
+    ##  Mean   :4.33                            
+    ##  3rd Qu.:5.00                            
+    ##  Max.   :5.00                            
+    ##  NA's   :1                               
+    ##  D - 1. Write two things you like about the teaching and learning in this unit so far.
+    ##  Length:101                                                                           
+    ##  Class :character                                                                     
+    ##  Mode  :character                                                                     
+    ##                                                                                       
+    ##                                                                                       
+    ##                                                                                       
+    ##                                                                                       
+    ##  D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)
+    ##  Length:101                                                                                                                          
+    ##  Class :character                                                                                                                    
+    ##  Mode  :character                                                                                                                    
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##  Average Course Evaluation Rating Average Level of Learning Attained Rating
+    ##  Min.   :2.909                    Min.   :2.000                            
+    ##  1st Qu.:4.273                    1st Qu.:3.500                            
+    ##  Median :4.545                    Median :4.000                            
+    ##  Mean   :4.531                    Mean   :4.095                            
+    ##  3rd Qu.:4.909                    3rd Qu.:4.500                            
+    ##  Max.   :5.000                    Max.   :5.000                            
+    ##  NA's   :1                        NA's   :1                                
+    ##  Average Pedagogical Strategy Effectiveness Rating
+    ##  Min.   :3.182                                    
+    ##  1st Qu.:4.068                                    
+    ##  Median :4.545                                    
+    ##  Mean   :4.432                                    
+    ##  3rd Qu.:4.909                                    
+    ##  Max.   :5.000                                    
+    ##  NA's   :1                                        
+    ##  Project: Section 1-4: (20%) x/10 Project: Section 5-11: (50%) x/10
+    ##  Min.   : 0.000                   Min.   : 0.000                   
+    ##  1st Qu.: 7.400                   1st Qu.: 6.000                   
+    ##  Median : 8.500                   Median : 7.800                   
+    ##  Mean   : 8.011                   Mean   : 6.582                   
+    ##  3rd Qu.: 9.000                   3rd Qu.: 8.300                   
+    ##  Max.   :10.000                   Max.   :10.000                   
+    ##                                                                    
+    ##  Project: Section 12: (30%) x/5 Project: (10%): x/30 x 100 TOTAL
+    ##  Min.   :0.000                  Min.   :  0.00                  
+    ##  1st Qu.:0.000                  1st Qu.: 56.00                  
+    ##  Median :0.000                  Median : 66.40                  
+    ##  Mean   :1.015                  Mean   : 62.39                  
+    ##  3rd Qu.:1.250                  3rd Qu.: 71.60                  
+    ##  Max.   :5.000                  Max.   :100.00                  
+    ##  NA's   :1                                                      
+    ##  Quiz 1 on Concept 1 (Introduction) x/32 Quiz 3 on Concept 3 (Linear) x/15
+    ##  Min.   : 4.75                           Min.   : 3.00                    
+    ##  1st Qu.:11.53                           1st Qu.: 7.00                    
+    ##  Median :15.33                           Median : 9.00                    
+    ##  Mean   :16.36                           Mean   : 9.53                    
+    ##  3rd Qu.:19.63                           3rd Qu.:12.00                    
+    ##  Max.   :31.25                           Max.   :15.00                    
+    ##                                          NA's   :2                        
+    ##  Quiz 4 on Concept 4 (Non-Linear) x/22 Quiz 5 on Concept 5 (Dashboarding) x/10
+    ##  Min.   : 3.00                         Min.   : 0.000                         
+    ##  1st Qu.:10.91                         1st Qu.: 5.000                         
+    ##  Median :13.50                         Median : 6.330                         
+    ##  Mean   :13.94                         Mean   : 6.367                         
+    ##  3rd Qu.:17.50                         3rd Qu.: 8.000                         
+    ##  Max.   :22.00                         Max.   :12.670                         
+    ##  NA's   :6                             NA's   :12                             
+    ##  Quizzes and  Bonus Marks (7%): x/79 x 100 TOTAL
+    ##  Min.   :26.26                                  
+    ##  1st Qu.:43.82                                  
+    ##  Median :55.31                                  
+    ##  Mean   :56.22                                  
+    ##  3rd Qu.:65.16                                  
+    ##  Max.   :95.25                                  
+    ##                                                 
+    ##  Lab 1 - 2.c. - (Simple Linear Regression) x/5
+    ##  Min.   :3.000                                
+    ##  1st Qu.:5.000                                
+    ##  Median :5.000                                
+    ##  Mean   :4.898                                
+    ##  3rd Qu.:5.000                                
+    ##  Max.   :5.000                                
+    ##  NA's   :3                                    
+    ##  Lab 2 - 2.e. -  (Linear Regression using Gradient Descent) x/5
+    ##  Min.   :2.150                                                 
+    ##  1st Qu.:3.150                                                 
+    ##  Median :4.850                                                 
+    ##  Mean   :4.166                                                 
+    ##  3rd Qu.:5.000                                                 
+    ##  Max.   :5.000                                                 
+    ##  NA's   :6                                                     
+    ##  Lab 3 - 2.g. - (Logistic Regression using Gradient Descent) x/5
+    ##  Min.   :2.85                                                   
+    ##  1st Qu.:4.85                                                   
+    ##  Median :4.85                                                   
+    ##  Mean   :4.63                                                   
+    ##  3rd Qu.:4.85                                                   
+    ##  Max.   :5.00                                                   
+    ##  NA's   :9                                                      
+    ##  Lab 4 - 2.h. - (Linear Discriminant Analysis) x/5
+    ##  Min.   :1.850                                    
+    ##  1st Qu.:4.100                                    
+    ##  Median :4.850                                    
+    ##  Mean   :4.425                                    
+    ##  3rd Qu.:5.000                                    
+    ##  Max.   :5.000                                    
+    ##  NA's   :18                                       
+    ##  Lab 5 - Chart JS Dashboard Setup x/5 Lab Work (7%) x/25 x 100
+    ##  Min.   :0.000                        Min.   : 17.80          
+    ##  1st Qu.:0.000                        1st Qu.: 70.80          
+    ##  Median :5.000                        Median : 80.00          
+    ##  Mean   :3.404                        Mean   : 79.72          
+    ##  3rd Qu.:5.000                        3rd Qu.: 97.20          
+    ##  Max.   :5.000                        Max.   :100.00          
+    ##                                                               
+    ##  CAT 1 (8%): x/38 x 100 CAT 2 (8%): x/100 x 100
+    ##  Min.   :32.89          Min.   :  0.00         
+    ##  1st Qu.:59.21          1st Qu.: 51.00         
+    ##  Median :69.73          Median : 63.50         
+    ##  Mean   :69.39          Mean   : 62.13         
+    ##  3rd Qu.:82.89          3rd Qu.: 81.75         
+    ##  Max.   :97.36          Max.   :100.00         
+    ##  NA's   :4              NA's   :31             
+    ##  Attendance Waiver Granted: 1 = Yes, 0 = No Absenteeism Percentage
+    ##  Min.   :0.00000                            Min.   : 0.00         
+    ##  1st Qu.:0.00000                            1st Qu.: 7.41         
+    ##  Median :0.00000                            Median :14.81         
+    ##  Mean   :0.04951                            Mean   :15.42         
+    ##  3rd Qu.:0.00000                            3rd Qu.:22.22         
+    ##  Max.   :1.00000                            Max.   :51.85         
+    ##                                                                   
+    ##  Coursework TOTAL: x/40 (40%) EXAM: x/60 (60%)
+    ##  Min.   : 7.47                Min.   : 5.00   
+    ##  1st Qu.:20.44                1st Qu.:26.00   
+    ##  Median :24.58                Median :34.00   
+    ##  Mean   :24.53                Mean   :33.94   
+    ##  3rd Qu.:29.31                3rd Qu.:42.00   
+    ##  Max.   :35.08                Max.   :56.00   
+    ##                               NA's   :4       
+    ##  TOTAL = Coursework TOTAL + EXAM (100%)    GRADE          
+    ##  Min.   : 7.47                          Length:101        
+    ##  1st Qu.:45.54                          Class :character  
+    ##  Median :58.69                          Mode  :character  
+    ##  Mean   :57.12                                            
+    ##  3rd Qu.:68.83                                            
+    ##  Max.   :87.72                                            
+    ## 
+
+``` r
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("scale",
+    "center", "ica"), n.comp = 3)
+print(model_of_the_transform)
+```
+
+    ## Created from 51 samples and 100 variables
+    ## 
+    ## Pre-processing:
+    ##   - centered (96)
+    ##   - independent component signal extraction (96)
+    ##   - ignored (4)
+    ##   - scaled (96)
+    ## 
+    ## ICA used 3 components
+
+``` r
+StudentPerformanceDataset_ica_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+summary(StudentPerformanceDataset_ica_dr)
+```
+
+    ##  class_group       
+    ##  Length:101        
+    ##  Class :character  
+    ##  Mode  :character  
+    ##                    
+    ##                    
+    ##                    
+    ##                    
+    ##  D - 1. Write two things you like about the teaching and learning in this unit so far.
+    ##  Length:101                                                                           
+    ##  Class :character                                                                     
+    ##  Mode  :character                                                                     
+    ##                                                                                       
+    ##                                                                                       
+    ##                                                                                       
+    ##                                                                                       
+    ##  D - 2. Write at least one recommendation to improve the teaching and learning in this unit (for the remaining weeks in the semester)
+    ##  Length:101                                                                                                                          
+    ##  Class :character                                                                                                                    
+    ##  Mode  :character                                                                                                                    
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##                                                                                                                                      
+    ##     GRADE                ICA1               ICA2              ICA3        
+    ##  Length:101         Min.   :-3.52202   Min.   :-1.9043   Min.   :-1.6122  
+    ##  Class :character   1st Qu.:-0.78145   1st Qu.:-0.8906   1st Qu.:-0.4096  
+    ##  Mode  :character   Median :-0.09192   Median :-0.3071   Median : 0.2611  
+    ##                     Mean   :-0.21496   Mean   :-0.1457   Mean   : 0.2585  
+    ##                     3rd Qu.: 0.40159   3rd Qu.: 0.5298   3rd Qu.: 0.6436  
+    ##                     Max.   : 2.28723   Max.   : 3.3796   Max.   : 3.6482  
+    ##                     NA's   :50         NA's   :50        NA's   :50

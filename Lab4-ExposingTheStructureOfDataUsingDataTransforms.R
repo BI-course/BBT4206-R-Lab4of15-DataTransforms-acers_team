@@ -198,7 +198,7 @@ if (require("FactoMineR")) {
 # Execute the following to load the “BostonHousing” dataset which is offered
 # in the "mlbench" package:
 data("BostonHousing")
-
+data(iris)
 ### Crop Dataset ----
 # Execute the following to load the downloaded Crop dataset:
 crop_dataset <- read_csv("data/crop.data.csv",
@@ -775,6 +775,7 @@ par(mfrow = c(1, 4))
 for (i in 1:4) {
   hist(iris_dataset[, i], main = names(iris_dataset)[i])
 }
+
 
 model_of_the_transform <- preProcess(iris_dataset, method = c("BoxCox"))
 print(model_of_the_transform)

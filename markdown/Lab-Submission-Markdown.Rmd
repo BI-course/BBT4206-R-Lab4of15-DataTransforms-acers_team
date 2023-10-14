@@ -1,0 +1,256 @@
+---
+title: "Business Intelligence Project"
+author: "Acers_Team"
+date: "October 14, 2023"
+output:
+  github_document: 
+    toc: yes
+    toc_depth: 4
+    fig_width: 6
+    fig_height: 4
+    df_print: default
+editor_options:
+  chunk_output_type: console
+---
+
+# Student Details
+
+|                                              |     |
+|----------------------------------------------|-----|
+| **Student ID Number**                        | ... |
+| **Student Name**                             | Nicholas Bwalley |
+| **Student Name**                             | Sarah Mongare |
+| **Student Name**                             | Millicent Cheptoi |
+| **Student Name**                             | Angela Kinya |
+| **Student Name**                             | Lesley Tulienge |
+| **BBIT 4.2 Group**                           | Acers Team |
+| **BI Project Group Name/ID (if applicable)** | ... |
+
+# Setup Chunk
+
+**Note:** the following KnitR options have been set as the global defaults: <BR> `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy = TRUE)`.
+
+More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
+
+```{r setup, include=FALSE}
+library(formatR)
+knitr::opts_chunk$set(
+  warning = FALSE,
+  collapse = FALSE
+)
+```
+
+# Understanding the Dataset (Exploratory Data Analysis (EDA))
+
+## Loading the Dataset
+
+### Source:
+
+The dataset that was used can be downloaded here: *\<provide a link\>*
+
+### Reference:
+
+*\<Cite the dataset here using APA\>\
+Refer to the APA 7th edition manual for rules on how to cite datasets: <https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
+
+
+## STEP 1. Install and Load the Required Packages ----
+```{r code chunk one}
+if (require("languageserver")) {
+  require("languageserver")
+} else {
+  install.packages("languageserver", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+
+## mlbench ----
+if (require("mlbench")) {
+  require("mlbench")
+} else {
+  install.packages("mlbench", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+## readr ----
+if (require("readr")) {
+  require("readr")
+} else {
+  install.packages("readr", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+## caret ----
+if (require("caret")) {
+  require("caret")
+} else {
+  install.packages("caret", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+## e1071 ----
+if (require("e1071")) {
+  require("e1071")
+} else {
+  install.packages("e1071", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+## factoextra ----
+if (require("factoextra")) {
+  require("factoextra")
+} else {
+  install.packages("factoextra", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+## FactoMineR ----
+if (require("FactoMineR")) {
+  require("FactoMineR")
+} else {
+  install.packages("FactoMineR", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+```
+
+
+## STEP 2: Loading datasets
+```{r Dataset Loader}
+library(readr)
+
+
+StudentPerformanceDataset <- read_csv("C:/Users/NICK BWALLEY/OneDrive - Strathmore University/MyStrath/BBIT/4.2/Business Intelligence II - Dr. Allan Omondi/BI2-Labs/BBT4206-R-Lab4of15-DataTransforms-acers_team/data/StudentPerformanceDataset.csv")
+
+
+View(StudentPerformanceDataset)
+
+```
+
+
+## STEP 3. Apply a Scale Data Transform ----
+```{r code chunk three}
+summary(StudentPerformanceDataset)
+# The code below converts column number 4 into unlisted and numeric data first
+# so that a histogram can be plotted. Further reading:
+StudentPerformanceDataset_yield <- as.numeric(unlist(StudentPerformanceDataset[, 4]))
+hist(StudentPerformanceDataset_yield, main = names(StudentPerformanceDataset)[4])
+
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("scale"))
+print(model_of_the_transform)
+student_dataset_scale_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+# AFTER
+summary(student_dataset_scale_transform)
+student_datasetset_yield <- as.numeric(unlist(student_dataset_scale_transform[, 4]))
+hist(student_datasetset_yield, main = names(student_dataset_scale_transform)[4])
+```
+
+
+## STEP 4. Apply a Centre Data Transform ----
+```{r code chunk four}
+### The Centre Basic Transform on the StudentDataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("center"))
+print(model_of_the_transform)
+student_dataset_center_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+summary(student_dataset_center_transform)
+
+### The Standardize Basic Transform on the Crop Dataset ----
+# BEFORE
+summary(StudentPerformanceDataset)
+sapply(StudentPerformanceDataset[, 4], sd)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center"))
+print(model_of_the_transform)
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+
+# AFTER
+summary(student_dataset_standardize_transform)
+sapply(student_dataset_standardize_transform[, 4], sd)
+```
+
+
+## STEP 5. Apply a Standardize Data Transform ----
+```{r code chunk five}
+### The Standardize Basic Transform on the StudentDataset ----
+# BEFORE
+summary(StudentPerformanceDataset)
+sapply(StudentPerformanceDataset[, 4], sd)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center"))
+print(model_of_the_transform)
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+
+# AFTER
+summary(student_dataset_standardize_transform)
+sapply(student_dataset_standardize_transform[, 4], sd)
+```
+
+
+## STEP 6. Apply a Normalize Data Transform ----
+```{code chunk six}
+### The Normalize Transform on the StudentDataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("range"))
+print(model_of_the_transform)
+student_dataset_normalize_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+summary(student_dataset_normalize_transform)
+```
+
+
+## STEP 7. Apply a Box-Cox Power Transform ----
+```{r code chunk seven}
+### Box-Cox Power Transform on the StudentDataset ----
+# BEFORE
+summary(student_dataset_standardize_transform)
+
+# Calculate the skewness before the Box-Cox transform
+sapply(student_dataset_standardize_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_standardize_transform[, 4], sd)
+
+model_of_the_transform <- preProcess(student_dataset_standardize_transform,
+                                     method = c("BoxCox"))
+print(model_of_the_transform)
+student_dataset_box_cox_transform <- predict(model_of_the_transform,
+                                             student_dataset_standardize_transform)
+
+# AFTER
+summary(student_dataset_box_cox_transform)
+
+sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], sd)
+
+# Calculate the skewness after the Box-Cox transform
+sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], sd)
+```
+
+
+## STEP 8. Apply a Yeo-Johnson Power Transform ----
+```{r code chunk eight}
+### Yeo-Johnson Power Transform on the StudentDataset ----
+# BEFORE
+summary(student_dataset_standardize_transform)
+
+# Calculate the skewness before the Yeo-Johnson transform
+sapply(student_dataset_standardize_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_standardize_transform[, 4], sd)
+
+model_of_the_transform <- preProcess(student_dataset_standardize_transform,
+                                     method = c("YeoJohnson"))
+print(model_of_the_transform)
+student_dataset_yeo_johnson_transform <- predict(model_of_the_transform, # nolint
+                                                 student_dataset_standardize_transform)
+
+# AFTER
+summary(student_dataset_yeo_johnson_transform)
+
+# Calculate the skewness after the Yeo-Johnson transform
+sapply(student_dataset_yeo_johnson_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_yeo_johnson_transform[, 4], sd)
+```
+
+
+## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction ----
+
+

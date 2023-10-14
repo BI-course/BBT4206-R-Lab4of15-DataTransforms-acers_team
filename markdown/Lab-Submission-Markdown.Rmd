@@ -1,7 +1,13 @@
 ---
+<<<<<<< HEAD
 title: "Business Intelligence Project"
 author: "Acers_Team"
 date: "October 14, 2023"
+=======
+title: "Business Intelligence Lab Submission Markdown"
+author: "Acers Team"
+date: "11/10/2023"
+>>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
 output:
   github_document: 
     toc: yes
@@ -15,6 +21,7 @@ editor_options:
 
 # Student Details
 
+<<<<<<< HEAD
 |                                              |     |
 |----------------------------------------------|-----|
 | **Student ID Number**                        | ... |
@@ -29,11 +36,42 @@ editor_options:
 # Setup Chunk
 
 **Note:** the following KnitR options have been set as the global defaults: <BR> `knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy = TRUE)`.
+=======
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* |
+|                                                   |                                                                                                      |
+|                                                   | 1.  122790 - C - Bwalley Nicholas                                                                    |
+|                                                   |                                                                                                      |
+|                                                   | 2.  133834 - C - Mongare Sarah                                                                       |
+|                                                   |                                                                                                      |
+|                                                   | 3.  133928 - C - Cheptoi Millicent                                                                   |
+|                                                   |                                                                                                      |
+|                                                   | 4.  134879 - C - Tulienge Lesley                                                                     |
+|                                                   |                                                                                                      |
+|                                                   | 5.  124461 - C - Kinya Angela                                                                        |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **GitHub Classroom Group Name**                   | Acers Team                                                                                           |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Course Code**                                   | BBT4206                                                                                              |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Course Name**                                   | Business Intelligence II                                                                             |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Program**                                       | Bachelor of Business Information Technology                                                          |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                           |
++---------------------------------------------------+------------------------------------------------------------------------------------------------------+
+
+# Setup Chunk
+
+**Note:** the following "*KnitR*" options have been set as the defaults:\
+`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
+>>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
 
 More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
 
 ```{r setup, include=FALSE}
 library(formatR)
+<<<<<<< HEAD
 knitr::opts_chunk$set(
   warning = FALSE,
   collapse = FALSE
@@ -64,6 +102,31 @@ if (require("languageserver")) {
 }
 
 
+=======
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
+                      collapse = FALSE, tidy = TRUE, include=TRUE)
+```
+
+**Note:** the following "*R Markdown*" options have been set as the defaults:
+
+> output:\
+> \
+> github_document:\
+> toc: yes\
+> toc_depth: 4\
+> fig_width: 6\
+> fig_height: 4\
+> df_print: default\
+> \
+> editor_options:\
+> chunk_output_type: console
+
+# STEP 1 : Install and load all the packages
+
+We installed all the packages that will enable us execute this lab:
+
+```{r chuck code one}
+>>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21
 ## mlbench ----
 if (require("mlbench")) {
   require("mlbench")
@@ -111,6 +174,7 @@ if (require("FactoMineR")) {
   install.packages("FactoMineR", dependencies = TRUE,
                    repos = "https://cloud.r-project.org")
 }
+<<<<<<< HEAD
 ```
 
 
@@ -254,3 +318,6 @@ sapply(student_dataset_yeo_johnson_transform[, 4], sd)
 ## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction ----
 
 
+=======
+```
+>>>>>>> 4a877262f0f90fb5262b084b11926a8e556c4d21

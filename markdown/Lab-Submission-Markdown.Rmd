@@ -1,58 +1,77 @@
 ---
-title: "Business Intelligence Lab Submission Markdown"
-author: "Acers Team"
-date: "11/10/2023"
-output:
-  github_document: 
-    toc: yes
-    toc_depth: 4
-    fig_width: 6
-    fig_height: 4
-    df_print: default
-editor_options:
-  chunk_output_type: console
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
+
+------------------------------------------------------------------------
+
+title: "Business Intelligence Lab Submission Markdown" author: "Acers
+Team" date: "11/10/2023"
+
+output: github_document: toc: yes toc_depth: 4 fig_width: 6 fig_height:
+4 df_print: default editor_options: chunk_output_type: console ---
 
 # Student Details
 
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Student ID Numbers and Names of Group Members** | *\<list one student name, group, and ID per line; you should be between 2 and 5 members per group\>* |
-|                                                   |                                                                                                      |
-|                                                   | 1.  122790 - C - Bwalley Nicholas                                                                    |
-|                                                   |                                                                                                      |
-|                                                   | 2.  133834 - C - Mongare Sarah                                                                       |
-|                                                   |                                                                                                      |
-|                                                   | 3.  133928 - C - Cheptoi Millicent                                                                   |
-|                                                   |                                                                                                      |
-|                                                   | 4.  134879 - C - Tulienge Lesley                                                                     |
-|                                                   |                                                                                                      |
-|                                                   | 5.  124461 - C - Kinya Angela                                                                        |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **GitHub Classroom Group Name**                   | Acers Team                                                                                           |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Course Code**                                   | BBT4206                                                                                              |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Course Name**                                   | Business Intelligence II                                                                             |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Program**                                       | Bachelor of Business Information Technology                                                          |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
-| **Semester Duration**                             | 21^st^ August 2023 to 28^th^ November 2023                                                           |
-+---------------------------------------------------+------------------------------------------------------------------------------------------------------+
++-----------------------+----------------------------------------------+
+| **Student ID Numbers  | *\<list one student name, group, and ID per  |
+| and Names of Group    | line; you should be between 2 and 5 members  |
+| Members**             | per group\>*                                 |
+|                       |                                              |
+|                       | 1.  122790 - C - Bwalley Nicholas            |
+|                       |                                              |
+|                       | 2.  133834 - C - Mongare Sarah               |
+|                       |                                              |
+|                       | 3.  133928 - C - Cheptoi Millicent           |
+|                       |                                              |
+|                       | 4.  134879 - C - Tulienge Lesley             |
+|                       |                                              |
+|                       | 5.  124461 - C - Kinya Angela                |
++-----------------------+----------------------------------------------+
+| **GitHub Classroom    | Acers Team                                   |
+| Group Name**          |                                              |
++-----------------------+----------------------------------------------+
+| **Course Code**       | BBT4206                                      |
++-----------------------+----------------------------------------------+
+| **Course Name**       | Business Intelligence II                     |
++-----------------------+----------------------------------------------+
+| **Program**           | Bachelor of Business Information Technology  |
++-----------------------+----------------------------------------------+
+| **Semester Duration** | 21^st^ August 2023 to 28^th^ November 2023   |
++-----------------------+----------------------------------------------+
 
-# Setup Chunk
+# Understanding the Dataset (Exploratory Data Analysis (EDA))
 
-**Note:** the following "*KnitR*" options have been set as the defaults:\
-`knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE, collapse = FALSE, tidy.opts = list(width.cutoff = 80), tidy = TRUE)`.
+## Loading the Dataset
 
-More KnitR options are documented here <https://bookdown.org/yihui/rmarkdown-cookbook/chunk-options.html> and here <https://yihui.org/knitr/options/>.
+### Source:
 
-```{r setup, include=FALSE}
-library(formatR)
+The dataset that was used can be downloaded here: *\<provide a link\>*
+
+### Reference:
+
+*\<Cite the dataset here using APA\>\
+Refer to the APA 7th edition manual for rules on how to cite datasets:
+<https://apastyle.apa.org/style-grammar-guidelines/references/examples/data-set-references>*
+
+## STEP 1. Install and Load the Required Packages ----
+
+```{r code chunk one}
+if (require("languageserver")) {
+  require("languageserver")
+} else {
+  install.packages("languageserver", dependencies = TRUE,
+                   repos = "https://cloud.r-project.org")
+}
+
+
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
                       collapse = FALSE, tidy = TRUE, include=TRUE)
 ```
 
-**Note:** the following "*R Markdown*" options have been set as the defaults:
+**Note:** the following "*R Markdown*" options have been set as the
+defaults:
 
 > output:\
 > \
@@ -70,7 +89,8 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, eval = TRUE,
 
 We installed all the packages that will enable us execute this lab:
 
-```{r chunk code one}
+```{r chuck code one}
+
 ## mlbench ----
 if (require("mlbench")) {
   require("mlbench")
@@ -120,150 +140,190 @@ if (require("FactoMineR")) {
 }
 ```
 
-#Step 2: Load the dataset
-Load the student performance dataset.
-```{r chunk code two}
-student_performance_dataset <-
-  readr::read_csv(
-    "data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
-    col_types =
-      readr::cols(
-        class_group =
-          readr::col_factor(levels = c("A", "B", "C")),
-        gender = readr::col_factor(levels = c("1", "0")),
-        YOB = readr::col_date(format = "%Y"),
-        regret_choosing_bi =
-          readr::col_factor(levels = c("1", "0")),
-        drop_bi_now =
-          readr::col_factor(levels = c("1", "0")),
-        motivator =
-          readr::col_factor(levels = c("1", "0")),
-        read_content_before_lecture =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        anticipate_test_questions =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        answer_rhetorical_questions =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        find_terms_I_do_not_know =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        copy_new_terms_in_reading_notebook =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        take_quizzes_and_use_results =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        reorganise_course_outline =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        write_down_important_points =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        space_out_revision =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        studying_in_study_group =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        schedule_appointments =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        goal_oriented =
-          readr::col_factor(levels =
-                              c("1", "0")),
-        spaced_repetition =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        testing_and_active_recall =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        interleaving =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        categorizing =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        retrospective_timetable =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        cornell_notes =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4")),
-        sq3r = readr::col_factor(levels =
-                                   c("1", "2", "3", "4")),
-        commute = readr::col_factor(levels =
-                                      c("1", "2",
-                                        "3", "4")),
-        study_time = readr::col_factor(levels =
-                                         c("1", "2",
-                                           "3", "4")),
-        repeats_since_Y1 = readr::col_integer(),
-        paid_tuition = readr::col_factor(levels =
-                                           c("0", "1")),
-        free_tuition = readr::col_factor(levels =
-                                           c("0", "1")),
-        extra_curricular = readr::col_factor(levels =
-                                               c("0", "1")),
-        sports_extra_curricular =
-          readr::col_factor(levels = c("0", "1")),
-        exercise_per_week = readr::col_factor(levels =
-                                                c("0", "1",
-                                                  "2",
-                                                  "3")),
-        meditate = readr::col_factor(levels =
-                                       c("0", "1",
-                                         "2", "3")),
-        pray = readr::col_factor(levels =
-                                   c("0", "1",
-                                     "2", "3")),
-        internet = readr::col_factor(levels =
-                                       c("0", "1")),
-        laptop = readr::col_factor(levels = c("0", "1")),
-        family_relationships =
-          readr::col_factor(levels =
-                              c("1", "2", "3", "4", "5")),
-        friendships = readr::col_factor(levels =
-                                          c("1", "2", "3",
-                                            "4", "5")),
-        romantic_relationships =
-          readr::col_factor(levels =
-                              c("0", "1", "2", "3", "4")),
-        spiritual_wellnes =
-          readr::col_factor(levels = c("1", "2", "3",
-                                       "4", "5")),
-        financial_wellness =
-          readr::col_factor(levels = c("1", "2", "3",
-                                       "4", "5")),
-        health = readr::col_factor(levels = c("1", "2",
-                                              "3", "4",
-                                              "5")),
-        day_out = readr::col_factor(levels = c("0", "1",
-                                               "2", "3")),
-        night_out = readr::col_factor(levels = c("0",
-                                                 "1", "2",
-                                                 "3")),
-        alcohol_or_narcotics =
-          readr::col_factor(levels = c("0", "1", "2", "3")),
-        mentor = readr::col_factor(levels = c("0", "1")),
-        mentor_meetings = readr::col_factor(levels =
-                                              c("0", "1",
-                                                "2", "3")),
-        `Attendance Waiver Granted: 1 = Yes, 0 = No` =
-          readr::col_factor(levels = c("0", "1")),
-        GRADE = readr::col_factor(levels =
-                                    c("A", "B", "C", "D",
-                                      "E"))),
-    locale = readr::locale())
+## STEP 2: Loading datasets
 
-View(student_performance_dataset)
+```{r Dataset Loader}
+library(readr)
 
-```
-#Step 3: Perform scale transform
-The scale data transform is useful for scaling data that has a Gaussian distribution. The scale data transform works by calculating the standard deviation of an attribute and then divides each value by the standard deviation.
-```{r chunk code three}
+
+StudentPerformanceDataset <- read_csv("C:/Users/NICK BWALLEY/OneDrive - Strathmore University/MyStrath/BBIT/4.2/Business Intelligence II - Dr. Allan Omondi/BI2-Labs/BBT4206-R-Lab4of15-DataTransforms-acers_team/data/StudentPerformanceDataset.csv")
+
+
+View(StudentPerformanceDataset)
 
 ```
 
+## STEP 3. Apply a Scale Data Transform ----
+
+```{r code chunk three}
+summary(StudentPerformanceDataset)
+# The code below converts column number 4 into unlisted and numeric data first
+# so that a histogram can be plotted. Further reading:
+StudentPerformanceDataset_yield <- as.numeric(unlist(StudentPerformanceDataset[, 4]))
+hist(StudentPerformanceDataset_yield, main = names(StudentPerformanceDataset)[4])
+
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("scale"))
+print(model_of_the_transform)
+student_dataset_scale_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+# AFTER
+summary(student_dataset_scale_transform)
+student_datasetset_yield <- as.numeric(unlist(student_dataset_scale_transform[, 4]))
+hist(student_datasetset_yield, main = names(student_dataset_scale_transform)[4])
+```
+
+## STEP 4. Apply a Centre Data Transform ----
+
+```{r code chunk four}
+### The Centre Basic Transform on the StudentDataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("center"))
+print(model_of_the_transform)
+student_dataset_center_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+summary(student_dataset_center_transform)
+
+### The Standardize Basic Transform on the Student Dataset ----
+# BEFORE
+summary(StudentPerformanceDataset)
+sapply(StudentPerformanceDataset[, 4], sd)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center"))
+print(model_of_the_transform)
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+
+# AFTER
+summary(student_dataset_standardize_transform)
+sapply(student_dataset_standardize_transform[, 4], sd)
+```
+
+## STEP 5. Apply a Standardize Data Transform ----
+
+```{r code chunk five}
+### The Standardize Basic Transform on the StudentDataset ----
+# BEFORE
+summary(StudentPerformanceDataset)
+sapply(StudentPerformanceDataset[, 4], sd)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center"))
+print(model_of_the_transform)
+student_dataset_standardize_transform <- predict(model_of_the_transform, StudentPerformanceDataset) # nolint
+
+# AFTER
+summary(student_dataset_standardize_transform)
+sapply(student_dataset_standardize_transform[, 4], sd)
+```
+
+## STEP 6. Apply a Normalize Data Transform ----
+
+```{code chunk six}
+### The Normalize Transform on the StudentDataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method = c("range"))
+print(model_of_the_transform)
+student_dataset_normalize_transform <- predict(model_of_the_transform, StudentPerformanceDataset)
+summary(student_dataset_normalize_transform)
+```
+
+## STEP 7. Apply a Box-Cox Power Transform ----
+
+```{r code chunk seven}
+### Box-Cox Power Transform on the StudentDataset ----
+# BEFORE
+summary(student_dataset_standardize_transform)
+
+# Calculate the skewness before the Box-Cox transform
+sapply(student_dataset_standardize_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_standardize_transform[, 4], sd)
+
+model_of_the_transform <- preProcess(student_dataset_standardize_transform,
+                                     method = c("BoxCox"))
+print(model_of_the_transform)
+student_dataset_box_cox_transform <- predict(model_of_the_transform,
+                                             student_dataset_standardize_transform)
+
+# AFTER
+summary(student_dataset_box_cox_transform)
+
+sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], sd)
+
+# Calculate the skewness after the Box-Cox transform
+sapply(student_dataset_box_cox_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_box_cox_transform[, 4], sd)
+```
+
+## STEP 8. Apply a Yeo-Johnson Power Transform ----
+
+```{r code chunk eight}
+### Yeo-Johnson Power Transform on the StudentDataset ----
+# BEFORE
+summary(student_dataset_standardize_transform)
+
+# Calculate the skewness before the Yeo-Johnson transform
+sapply(student_dataset_standardize_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_standardize_transform[, 4], sd)
+
+model_of_the_transform <- preProcess(student_dataset_standardize_transform,
+                                     method = c("YeoJohnson"))
+print(model_of_the_transform)
+student_dataset_yeo_johnson_transform <- predict(model_of_the_transform, # nolint
+                                                 student_dataset_standardize_transform)
+
+# AFTER
+summary(student_dataset_yeo_johnson_transform)
+
+# Calculate the skewness after the Yeo-Johnson transform
+sapply(student_dataset_yeo_johnson_transform[, 4],  skewness, type = 2)
+sapply(student_dataset_yeo_johnson_transform[, 4], sd)
+```
+
+## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction ----
+```{code chunk nine}
+summary(StudentPerformanceDataset)
+
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method =
+                                       c("scale", "center", "pca"))
+
+print(model_of_the_transform)
+student_performance_pca_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+summary(student_performance_pca_dr)
+```
+### PCA for Dimensionality Reduction on the Student Dataset ----
+
+Notice that PCA is not applied to the "Student Data" dataset because it
+requires multiple numeric independent variables. The dataset has 3
+categorical independent variables and only 1 numeric independent
+variable.
+
+## STEP 10. ICA Linear Algebra Transform for Dimensionality Reduction
+----
+
+```{r code chunk ten}
+# Independent Component Analysis (ICA) Linear Algebra Transform ----
+
+# Independent Component Analysis (ICA) transforms the data to return only the
+# independent components. The n.comp argument is required to specify the
+# desired number of independent components. This also results in a list of
+# attributes that are uncorrelated.
+
+if (!is.element("fastICA", installed.packages()[, 1])) {
+  install.packages("fastICA", dependencies = TRUE)
+}
+require("fastICA")
+
+### ICA for Dimensionality Reduction on the Student Dataset ----
+# Notice that ICA is not applied to the “Student Data” dataset because it requires
+# multiple numeric independent variables. The dataset has 3 categorical
+# independent variables and only 1 numeric independent variable.
+
+### ICA for Dimensionality Reduction on the Iris Dataset ----
+summary(StudentPerformanceDataset)
+model_of_the_transform <- preProcess(StudentPerformanceDataset,
+                                     method = c("scale", "center", "ica"),
+                                     n.comp = 3)
+print(model_of_the_transform)
+StudentPerformanceDataset_ica_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+summary(StudentPerformanceDataset_ica_dr)
+```

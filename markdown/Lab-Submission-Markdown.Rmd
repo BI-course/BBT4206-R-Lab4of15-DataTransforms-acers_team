@@ -278,7 +278,17 @@ sapply(student_dataset_yeo_johnson_transform[, 4], sd)
 ```
 
 ## STEP 9.a. PCA Linear Algebra Transform for Dimensionality Reduction ----
+```{code chunk nine}
+summary(StudentPerformanceDataset)
 
+model_of_the_transform <- preProcess(StudentPerformanceDataset, method =
+                                       c("scale", "center", "pca"))
+
+print(model_of_the_transform)
+student_performance_pca_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
+
+summary(student_performance_pca_dr)
+```
 ### PCA for Dimensionality Reduction on the Student Dataset ----
 
 Notice that PCA is not applied to the "Student Data" dataset because it
@@ -286,7 +296,7 @@ requires multiple numeric independent variables. The dataset has 3
 categorical independent variables and only 1 numeric independent
 variable.
 
-##STEP 10. ICA Linear Algebra Transform for Dimensionality Reduction
+## STEP 10. ICA Linear Algebra Transform for Dimensionality Reduction
 ----
 
 ```{r code chunk ten}

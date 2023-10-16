@@ -1,4 +1,6 @@
 
+#install packages
+##language server---
 if (require("languageserver")) {
   require("languageserver")
 } else {
@@ -59,6 +61,10 @@ if (require("FactoMineR")) {
 StudentPerformanceDataset <-
   readr::read_csv(
     "data/StudentPerformanceDataset.CSV", # nolint
+##Load the dataset
+student_performance_dataset <-
+  readr::read_csv(
+    "data/20230412-20230719-BI1-BBIT4-1-StudentPerformanceDataset.CSV", # nolint
     col_types =
       readr::cols(
         class_group =
@@ -351,4 +357,6 @@ print(model_of_the_transform)
 StudentPerformanceDataset_ica_dr <- predict(model_of_the_transform, StudentPerformanceDataset)
 
 summary(StudentPerformanceDataset_ica_dr)
+
+View(student_performance_dataset)
 
